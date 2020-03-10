@@ -6,6 +6,7 @@ var Book = require('../models/Book.js');
 
 /* GET ALL BOOKS */
 router.get('/', function(req, res, next) {
+    console.log('here')
   Book.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
@@ -22,6 +23,8 @@ router.get('/:id', function(req, res, next) {
 
 /* SAVE BOOK */
 router.post('/', function(req, res, next) {
+    console.log('here2')
+
   Book.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);

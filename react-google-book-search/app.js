@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 
 var book = require('./routes/book');
 var app = express();
+const PORT = process.env.PORT || 3001
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -14,11 +16,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://localhost/mern-crud', { promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
-app.use('/api/book', book);
+app.use('/routes/book', book);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +39,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(PORT, ()=> {
+    console.log(`API server now listening on ${3001}`)
+})
 
 module.exports = app;
