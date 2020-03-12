@@ -8,12 +8,14 @@ import registerServiceWorker from './registerServiceWorker';
 import Edit from './components/Edit';
 import Create from './components/Create';
 import Show from './components/Show';
-
 ReactDOM.render(
   <Router>
       <div>
+        {/* use this vvv as the "saved" route */}
         <Route exact path='/' component={App} />
         <Route path='/edit/:id' component={Edit} />
+
+        {/* use this vvv as the "search" route */}
         <Route path='/create' component={Create} />
         <Route path='/show/:id' component={Show} />
       </div>
